@@ -8,11 +8,14 @@ Values include:
 - PROC_CPU_REQ: Denotes when a process transitions to the READY state and thus requests access to the CPU
 - PROC_CPU_DONE: Denotes when a process needs no more CPU time and is thus terminated
 """
+
+
 class EventTypes(Enum):
         PROC_ARRIVES = auto()
         PROC_CPU_REQ = auto()
         PROC_CPU_DONE = auto()
-        
+
+
 """ Encapsulates all necessary info for our events, to be used in queues
 
 This class comes with three member variables: process_id, event_type and event_time
@@ -23,11 +26,12 @@ This class comes with three member variables: process_id, event_type and event_t
 class Event(object):
         """ Instantiates an Event object
 
-        Parameters: 
+        Parameters:
         - process_id: The ID of the process that generated this event
         - event_time: The time point at which this event takes place
         - event_type: The type of this event (see EventTypes)
         """
+
         def __init__(self, *, process_id, event_type, event_time):
                 if not isinstance(event_type, EventTypes):
                         raise ValueError("Value {} not an EventTypes object.".format(event_type))
@@ -55,6 +59,7 @@ class Event(object):
 
         Sorts based solely on event time
         """
+
         def __lt__(self, other):
                 if not isinstance(other, Event):
                         raise ValueError("Value {} not an Event.".format(other))
@@ -62,5 +67,6 @@ class Event(object):
 
         """ Returns a string representation of this Event object
         """
+
         def __str__(self):
                 return str(self.event_type) + " @ " + str(self.event_time) + " [#" + str(self.process_id) + "]"
