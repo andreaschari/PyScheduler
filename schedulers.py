@@ -5,32 +5,35 @@ from process import ProcessStates
 
 
 class FCFS(SchedulerDES):
-        '''
-        Implementation of FCFS/FIFO scheduling algorithms
-        using OOP techniques
-        '''
+    '''
+    Implementation of FCFS/FIFO scheduling algorithms
+    using OOP techniques
+    '''
 
-        def scheduler_func(self, cur_event):
-                '''
-                Parameters: Event object
-                Returns: Process object with least arrival time
-                '''
-                cur_proc_id = cur_event.process_id()
-                return SchedulerDES.processes[cur_proc_id]
+    def scheduler_func(self, cur_event):
+        '''
+        Parameters: Event object
+        Returns: Process object with least arrival time
+        '''
+        return SchedulerDES.processes[cur_event.process_id()]
 
-        def dispatcher_func(self, cur_proc):
-                cur_proc.process_state(ProcessStates.RUNNING)
-                cur_proc.run_for(cur_proc.service_time(), self.time)
-                cur_proc.process_state(ProcessStates.TERMINATED)
-                return Event(process_id=cur_proc.process_id(), event_type=EventTypes.PROC_CPU_DONE, event_time=self.time)
+    def dispatcher_func(self, cur_proc):
+        '''
+        Parameters: Process object
+        Returns: Event object
+        '''
+        cur_proc.process_state(ProcessStates.RUNNING)
+        cur_proc.run_for(cur_proc.service_time(), self.time)
+        cur_proc.process_state(ProcessStates.TERMINATED)
+        return Event(process_id=cur_proc.process_id(), event_type=EventTypes.PROC_CPU_DONE, event_time=self.time)
 
 
 class SJF(SchedulerDES):
-        def scheduler_func(self, cur_event):
-                pass
+    def scheduler_func(self, cur_event):
+            pass
 
-        def dispatcher_func(self, cur_proc):
-                pass
+    def dispatcher_func(self, cur_proc):
+            pass
 
 
 class RR(SchedulerDES):
@@ -51,8 +54,8 @@ class RR(SchedulerDES):
 
 
 class SRTF(SchedulerDES):
-        def scheduler_func(self, cur_event):
-                pass
+    def scheduler_func(self, cur_event):
+            pass
 
-        def dispatcher_func(self, cur_proc):
-                pass
+    def dispatcher_func(self, cur_proc):
+            pass
