@@ -7,7 +7,8 @@ from des import SchedulerDES
 from schedulers import FCFS, SJF, RR, SRTF
 
 # default values
-seed = int.from_bytes(random.bytes(4), byteorder="little")
+#seed = int.from_bytes(random.bytes(4), byteorder="little")
+seed = 3672961927
 num_processes = 10
 arrivals_per_time_unit = 3.0
 avg_cpu_burst_time = 2
